@@ -19,6 +19,11 @@ export default function NavbarSection() {
     setIsOpen(false);
   };
 
+  const isSection = (targetId?: string) => {
+    if (!targetId) return false;
+    return ['product-showcase', 'feature-grid', 'reviews', 'hero'].includes(targetId);
+  };
+
   return (
     <nav
       className={`relative z-50 w-full flex items-center justify-between py-4 md:py-6 ${isHome ? '' : 'max-w-7xl mx-auto px-4'}`}
@@ -106,11 +111,11 @@ export default function NavbarSection() {
             );
           }
 
-          if (isHome) {
+          if (isHome && item.targetId && isSection(item.targetId)) {
             return (
               <button
                 key={item.targetId || idx}
-                onClick={() => item.targetId && scrollToSection(item.targetId)}
+                onClick={() => scrollToSection(item.targetId!)}
                 className="font-display font-semibold text-sm text-slate-600 hover:text-brand-purple transition-colors cursor-pointer py-2 bg-transparent border-0 p-0"
               >
                 {item.label}
@@ -121,7 +126,7 @@ export default function NavbarSection() {
           return (
             <Link
               key={item.targetId || idx}
-              href={`/#${item.targetId}`}
+              href={isSection(item.targetId) ? `/#${item.targetId}` : `/${item.targetId}`}
               className="font-display font-semibold text-sm text-slate-600 hover:text-brand-purple transition-colors py-2"
             >
               {item.label}
@@ -202,14 +207,12 @@ export default function NavbarSection() {
               );
             }
 
-            if (isHome) {
+            if (isHome && item.targetId && isSection(item.targetId)) {
               return (
                 <button
                   key={item.targetId || idx}
                   onClick={() => {
-                    if (item.targetId) {
-                      scrollToSection(item.targetId);
-                    }
+                    scrollToSection(item.targetId!);
                     handleLinkClick();
                   }}
                   className="px-3 py-2.5 font-display font-bold text-base text-left text-slate-700 hover:text-brand-purple hover:bg-slate-50 rounded-xl transition-colors border-b border-slate-100 last:border-0 bg-transparent border-0 w-full cursor-pointer"
@@ -222,7 +225,7 @@ export default function NavbarSection() {
             return (
               <Link
                 key={item.targetId || idx}
-                href={`/#${item.targetId}`}
+                href={isSection(item.targetId) ? `/#${item.targetId}` : `/${item.targetId}`}
                 onClick={() => handleLinkClick()}
                 className="px-3 py-2.5 font-display font-bold text-base text-slate-700 hover:text-brand-purple hover:bg-slate-50 rounded-xl transition-colors border-b border-slate-100 last:border-0"
               >

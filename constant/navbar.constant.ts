@@ -1,6 +1,5 @@
 export interface DropdownItem {
   label: string;
-  href?: string;
   targetId?: string;
   disable?: boolean;
 }
@@ -8,7 +7,6 @@ export interface DropdownItem {
 export interface NavbarItem {
   label: string;
   targetId?: string;
-  href?: string;
   dropdownItems?: DropdownItem[];
 }
 
@@ -16,6 +14,8 @@ export const NAVBAR_ITEMS: NavbarItem[] = [
   { label: 'Koleksi Buku', targetId: 'product-showcase' },
   { label: 'Manfaat Hebat', targetId: 'feature-grid' },
   { label: 'Ulasan', targetId: 'reviews' },
+  { label: 'Berita', targetId: 'news' },
+  { label: 'Dokumentasi', targetId: 'documentation' },
   {
     label: 'Content',
     dropdownItems: [
