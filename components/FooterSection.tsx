@@ -1,4 +1,6 @@
 'use client';
+
+import { usePathname } from 'next/navigation';
 import { Mail, Globe, ArrowUp } from 'lucide-react';
 import { FaInstagram } from 'react-icons/fa';
 import { FOOTER_ITEMS } from '@/constant/footer.constant';
@@ -6,6 +8,9 @@ import { scrollToSection } from '@/utils/scrroll';
 import Link from 'next/link';
 
 export default function FooterSection() {
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -68,13 +73,21 @@ export default function FooterSection() {
             <ul className="space-y-3 text-xs md:text-sm">
               {FOOTER_ITEMS.map((link) => (
                 <li key={link.targetId}>
-                  <Link
-                    href={`/#${link.targetId}`}
-                    onClick={() => scrollToSection(link.targetId)}
-                    className="hover:text-brand-yellow transition-colors font-sans cursor-pointer text-left"
-                  >
-                    {link.label}
-                  </Link>
+                  {isHome ? (
+                    <button
+                      onClick={() => scrollToSection(link.targetId)}
+                      className="hover:text-brand-yellow transition-colors font-sans cursor-pointer text-left bg-transparent border-0 p-0 text-slate-300 text-xs md:text-sm block w-full"
+                    >
+                      {link.label}
+                    </button>
+                  ) : (
+                    <Link
+                      href={`/#${link.targetId}`}
+                      className="hover:text-brand-yellow transition-colors font-sans cursor-pointer text-left"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
