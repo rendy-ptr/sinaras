@@ -157,6 +157,7 @@ export default function HeroSection() {
                   width={500}
                   height={300}
                   className="rounded-xl w-full h-auto object-cover"
+                  loading="eager"
                 />
                 <span className="absolute -top-3 -right-3 bg-brand-blue border-2 border-slate-800 text-white font-display font-bold text-xs px-2.5 py-1 rounded-full uppercase tracking-wider">
                   Koper Jinjing
@@ -176,6 +177,7 @@ export default function HeroSection() {
                   width={500}
                   height={300}
                   className="rounded-2xl w-full h-auto object-cover"
+                  loading="eager"
                 />
 
                 <span className="absolute -top-3 left-4 bg-brand-pink border-3 border-slate-800 text-white font-display font-black text-xs md:text-sm px-3.5 py-1.5 rounded-2xl uppercase tracking-widest shadow-md">
@@ -200,6 +202,7 @@ export default function HeroSection() {
                   width={500}
                   height={300}
                   className="rounded-xl w-full h-auto object-cover opacity-90 hover:opacity-100 transition-opacity"
+                  loading="eager"
                 />
               </motion.div>
             </div>

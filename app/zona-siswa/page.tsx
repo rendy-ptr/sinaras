@@ -1,9 +1,10 @@
-'use client';
+import ZonaSiswaClient from './ZonaSiswaClient';
+import { getZonaSiswaData } from './data';
 
-export default function ZonaSiswaPage() {
-  return (
-    <div>
-      <h1>Zona Siswa</h1>
-    </div>
-  );
+export const revalidate = 60;
+
+export default async function ZonaSiswaPage() {
+  const data = await getZonaSiswaData();
+
+  return <ZonaSiswaClient data={data} />;
 }
